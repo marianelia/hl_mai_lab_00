@@ -3,4 +3,4 @@
 
 * Какой-то текст
 * 
-![Диаграмма](embed:UC01)
+![Диаграмма](embed:..\.structurizr\images\Deployment-001-thumbnail.png)
