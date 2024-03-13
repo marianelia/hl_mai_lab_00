@@ -15,52 +15,35 @@ workspace {
             structurizr.groupSeparator "/"
         }
 
-
         user = person "Пользователь"
-        other_user = person "Другой пользователь"
 
         social_network = softwareSystem "Социальная сеть" {
             description "text"
 
-            user_service = container "Text" {
-                description "text"
+            service = container "Социальная сеть" {
+               description "Социальная сеть с API"
             }
 
-            #temperature_service = container "Temperature service" {
-             #   description "Сервис мониторинга и управления температурой в доме"
-            #}
-
             group "Слой данных" {
-                user_database = container "User Database" {
-                    description "База данных пользователями"
+                database = container "Database" {
+                    description "База данных с пользователями, постами и сообщениями"
                     technology "PostgreSQL 15"
                     tags "database"
                 }
 
-                user_cache = container "User Cache" {
-                    description "Кеш пользовательских данных для ускорения аутентификации"
-                    technology "Redis"
-                    tags "database"
-                }
-
-                tweets = container "Tweet Database" {
-                    description "База данных для хранения постов на стене пользователя"
-                    technology "MongoDB 5"
-                    tags "database"
-                }
-                user_cache = container "Tweet Cache" {
-                    description "Кеш пользовательских данных для ускорения аутентификации"
+                cache = container "Cache" {
+                    description "Кеши"
                     technology "Redis"
                     tags "database"
                 }
             }
+            user -> cache "Получение/обновление ленты постов друзей и списка друзей"
+            database -> cache "Подготовка ленты пользователей и списка друзей"
+            user -> service "Написание постов, написание/получение сообщений, добавление/удаление из друзей"
+        }
 
 
-
-
-
-        user -> social_network "Делает публикации, общается с пользователем"
-        other_user -> social_network "Делает публикации, общается с пользователем"
+        user -> social_network "Делает публикации, отправляет/получает сообщения"
     }
 
     views {
