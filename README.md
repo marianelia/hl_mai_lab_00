@@ -20,7 +20,7 @@
 - Получение списка сообщения для пользователя
 
 
-<img src=".structurizr/images/Container-001-thumbnail.png" alt="Архитектура контейнеров" width="500"/>
+<img src="images/structurizr-1-Container-001.png" alt="Архитектура контейнеров" width="500"/>
 
 
 
